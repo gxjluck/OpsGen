@@ -1,0 +1,25 @@
+name: _example_custom
+title: 自定义模板示例
+description: 这是一个自定义模板示例，演示如何编写 YAML 模板（可在编辑器中参考后删除）
+icon: ✨
+category: general
+
+questions:
+  - name: message
+    label: 输出消息
+    type: string
+    default: Hello OpsGen
+    required: true
+
+  - name: repeat
+    label: 重复次数
+    type: int
+    default: 3
+    min: 1
+    max: 10
+
+script: |
+  #!/bin/bash
+  for i in $(seq 1 {{ repeat }}); do
+    echo "{{ message }} ($i/{{ repeat }})"
+  done
