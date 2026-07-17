@@ -734,6 +734,11 @@ def api_stats():
     return jsonify(history_service.get_stats())
 
 
+@app.route("/healthz")
+def healthz():
+    return jsonify({"status": "ok"}), 200
+
+
 @app.route("/api/templates/<name>/versions")
 def api_template_versions(name):
     try:
@@ -911,4 +916,5 @@ if __name__ == "__main__":
     VERSIONS_DIR.mkdir(parents=True, exist_ok=True)
     BATCHES_DIR.mkdir(parents=True, exist_ok=True)
     port = int(os.environ.get("PORT", 5000))
-    socketio.run(app, host="0.0.0.0", port=port, debug=True, allow_unsafe_werkzeug=True)
+    debug = os.environ.get("FLASK_DEBUG", "false").lower() in {"true", "1", "yes"}
+    socketio.run(app, host="0.0.0.0", port=port, debug=debug, allow_unsafe_werkzeug=True)

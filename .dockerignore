@@ -1,0 +1,14 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+data/shares/
+data/template_versions/
+data/batches/
+data/history.json
+data/favorites.json
+*.md
+.vscode
